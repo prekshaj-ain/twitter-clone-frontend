@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "./Components/Navbar";
  
 /* 
     - App Layout
@@ -15,8 +16,8 @@ import React from "react";
         
 */
 
-const App = ()=>{
-    <h1>Hello</h1>
-}
+const App = ()=>(
+    <Navbar/>
+)
 
 export default App;

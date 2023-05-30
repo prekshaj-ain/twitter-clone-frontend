@@ -1,8 +1,8 @@
 import React from 'react'
-
+import LOGO from "../Assets/twitter.svg"
 const Logo = () => {
   return (
-    <div>Logo</div>
+    <img src={LOGO} alt="Twitter" />
   )
 }
 
