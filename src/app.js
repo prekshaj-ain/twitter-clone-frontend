@@ -8,6 +8,7 @@ import Message from "./Components/Message";
 import Profile from "./Components/Profile";
 import NewTweet from "./Components/NewTweet";
 import Signup from "./Components/Signup";
+import Login from "./Components/Login";
 
 /* 
     - App Layout
@@ -38,11 +39,11 @@ const App = () => {
           <Route path="/:user" element={<Profile />} />
           <Route path="compose/tweet" element={<NewTweet />} />
         </Route>
-        <Route path="auth" element={<Signup />} />
+        <Route path="auth" element={<Login />} />
       </Routes>
       {background && (
         <Routes>
-          <Route path="auth" element={<Signup />} />
+          <Route path="auth" element={<Login />} />
         </Routes>
       )}
     </>
