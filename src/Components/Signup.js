@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -37,6 +38,12 @@ const Signup = () => {
   });
   const content = (
     <div className="fixed max-w-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-10 rounded-3xl">
+      <ClearOutlinedIcon
+        fontSize="small"
+        sx={{ color: "white" }}
+        className="p-1 bg-black rounded-full absolute top-3 left-3 cursor-pointer hover:opacity-70"
+        onClick={() => navigate(-1)}
+      />
       <div className="flex flex-col gap-5">
         <h2 className="text-3xl font-semibold">Create Your Account</h2>
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
