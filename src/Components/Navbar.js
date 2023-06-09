@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import TagIcon from "@mui/icons-material/Tag";
 import PersonIcon from "@mui/icons-material/Person";
@@ -9,6 +9,7 @@ import Logo from "./Logo";
 import NavItem from "./NavItem";
 
 const Navbar = () => {
+  const location = useLocation();
   return (
     <div className="basis-1/5 border-r-gray-200 border-r-[1px] h-screen flex flex-col py-2 px-8">
       <NavItem to="/">
@@ -30,7 +31,9 @@ const Navbar = () => {
         <EmailIcon />
         <span>Profile</span>
       </NavItem>
-      <Link></Link>
+      <Link to={`/auth`} state={{ background: location }}>
+        Signup
+      </Link>
     </div>
   );
 };
