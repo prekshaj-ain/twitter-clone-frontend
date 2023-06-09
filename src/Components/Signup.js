@@ -127,7 +127,8 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full p-2 rounded-3xl bg-black font-bold opacity-100 text-white hover:opacity-70 "
+            className="w-full p-2 rounded-3xl bg-black font-bold opacity-100 text-white hover:opacity-80 disabled:opacity-50"
+            disabled={!(formik.isValid && formik.dirty)}
           >
             Signup
           </button>
