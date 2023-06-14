@@ -4,7 +4,7 @@ import WriteSection from "./WriteSection";
 
 function MainContainer() {
   return (
-    <div className="max-w-xl basis-3/5">
+    <div className="max-w-xl w-full lg:basis-3/5">
       <Header />
       <WriteSection />
     </div>

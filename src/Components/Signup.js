@@ -2,13 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import Backdrop from "./UIElements/Backdrop";
+import { createUser } from "./Utils/Apicalls/userApi";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -35,6 +38,9 @@ const Signup = () => {
         .max(18, "Must be 18 characters or less")
         .required("Required"),
     }),
+    onSubmit: (values) => {
+      createUser(values, dispatch);
+    },
   });
   const content = (
     <div className="fixed max-w-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-10 rounded-3xl">
@@ -72,7 +78,7 @@ const Signup = () => {
             <input
               id="Email"
               name="Email"
-              type="text"
+              type="email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.Email}
@@ -93,7 +99,7 @@ const Signup = () => {
             <input
               id="Username"
               name="Username"
-              type="Username"
+              type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.Username}
@@ -114,7 +120,7 @@ const Signup = () => {
             <input
               id="Password"
               name="Password"
-              type="Password"
+              type="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.Password}

@@ -7,19 +7,24 @@ import * as Yup from "yup";
 
 import Backdrop from "./UIElements/Backdrop";
 import Logo from "./Logo";
+import { loginUser } from "./Utils/Apicalls/userApi";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      Name: "",
+      Email: "",
       Password: "",
     },
     validationSchema: Yup.object({
-      Name: Yup.string().required("Required"),
+      Email: Yup.string().required("Required"),
       Password: Yup.string().required("Required"),
     }),
+    onSubmit: (values) => {
+      loginUser(values, dispatch);
+    },
   });
   const content = (
     <div className="fixed max-w-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-16 rounded-3xl">
@@ -35,22 +40,22 @@ const Login = () => {
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
           <div>
             <input
-              id="Name"
-              name="Name"
+              id="Email"
+              name="Email"
               type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.Name}
-              placeholder="Email or Username"
+              placeholder="Email"
               className={`border border-gray-300 rounded-sm p-2 outline-none focus:border-blue-500 w-full ${
-                formik.touched.Name &&
-                formik.errors.Name &&
+                formik.touched.Email &&
+                formik.errors.Email &&
                 "placeholder:text-red-400 focus:border-red-400 border-red-400"
               }`}
             />
-            {formik.touched.Name && formik.errors.Name ? (
+            {formik.touched.Email && formik.errors.Email ? (
               <div className="text-[.7rem] text-red-500 font-semibold">
-                {formik.errors.Name}
+                {formik.errors.Email}
               </div>
             ) : null}
           </div>

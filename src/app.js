@@ -28,7 +28,6 @@ import Login from "./Components/Login";
 const App = () => {
   const location = useLocation();
   const background = location.state?.background;
-  console.log(background);
   return (
     <>
       <Routes location={background || location}>
@@ -39,11 +38,11 @@ const App = () => {
           <Route path="/:user" element={<Profile />} />
           <Route path="compose/tweet" element={<NewTweet />} />
         </Route>
-        <Route path="auth" element={<Login />} />
+        <Route path="auth" element={<Signup />} />
       </Routes>
       {background && (
         <Routes>
-          <Route path="auth" element={<Login />} />
+          <Route path="auth" element={<Signup />} />
         </Routes>
       )}
     </>
