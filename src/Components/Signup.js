@@ -43,7 +43,7 @@ const Signup = () => {
     },
   });
   const content = (
-    <div className="fixed max-w-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-10 rounded-3xl">
+    <div className="fixed w-full max-w-[480px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 sm:p-10 rounded-3xl">
       <ClearOutlinedIcon
         fontSize="small"
         sx={{ color: "white" }}
@@ -51,8 +51,13 @@ const Signup = () => {
         onClick={() => navigate(-1)}
       />
       <div className="flex flex-col gap-5">
-        <h2 className="text-3xl font-semibold">Create Your Account</h2>
-        <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
+        <h2 className=" text-xl sm:text-2xl font-semibold">
+          Create Your Account
+        </h2>
+        <form
+          onSubmit={formik.handleSubmit}
+          className="flex flex-col gap-3 sm:gap:5"
+        >
           <div>
             <input
               id="Name"

@@ -19,7 +19,7 @@ const Login = () => {
       Password: "",
     },
     validationSchema: Yup.object({
-      Email: Yup.string().required("Required"),
+      Email: Yup.string().email("Invalid email address").required("Required"),
       Password: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
@@ -27,7 +27,7 @@ const Login = () => {
     },
   });
   const content = (
-    <div className="fixed max-w-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-16 rounded-3xl">
+    <div className="fixed w-full max-w-[480px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-10 sm:p-16 rounded-3xl">
       <ClearOutlinedIcon
         fontSize="small"
         sx={{ color: "white" }}
@@ -36,7 +36,9 @@ const Login = () => {
       />
       <Logo logoStyle={"absolute top-1 right-0 left-0 m-auto"} />
       <div className="flex flex-col gap-5">
-        <h2 className="text-3xl font-semibold">Sign in to Bluebird</h2>
+        <h2 className=" text-xl sm:text-2xl font-semibold">
+          Log in to Bluebird
+        </h2>
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
           <div>
             <input
