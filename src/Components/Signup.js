@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -12,7 +12,7 @@ import { createUser } from "./Utils/Apicalls/userApi";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const isLoggedIn = useSelector((store) => store.Auth.isLoggedIn);
   const formik = useFormik({
     initialValues: {
       Name: "",
@@ -42,6 +42,12 @@ const Signup = () => {
       createUser(values, dispatch);
     },
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home");
+    }
+  }, [isLoggedIn]);
   const content = (
     <div className="fixed w-full max-w-[480px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 sm:p-10 rounded-3xl">
       <ClearOutlinedIcon

@@ -12,7 +12,6 @@ import Login from "./Login";
 import Layout from "./Layout";
 import RequireAuth from "./RequireAuth";
 import NotFound from "./NotFound";
-import ExplorePublic from "./ExplorePublic";
 /* 
     - App Layout
     - Nav
@@ -37,10 +36,9 @@ const App = () => {
       <Routes location={background || location}>
         <Route path="/" element={<Layout />}>
           {/* Public routes */}
-
           <Route path="/" element={<Body />}>
-            <Route path="/" element={<ExplorePublic />} />
-            <Route path="/explore" element={<ExplorePublic />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="user/:user" element={<Profile />} />
           </Route>
           <Route path="signup" element={<Signup />} />
@@ -50,6 +48,7 @@ const App = () => {
           <Route element={<RequireAuth />}>
             <Route path="/" element={<Body />}>
               <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
               <Route path="explore" element={<Explore />} />
               <Route path="messages" element={<Message />} />
               <Route path="compose/tweet" element={<NewTweet />} />

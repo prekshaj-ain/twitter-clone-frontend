@@ -16,15 +16,23 @@ const Navbar = () => {
         <Logo />
       </NavItem>
       {isLoggedIn && (
-        <NavItem to="/">
+        <NavItem to="/home">
           <HomeIcon />
           <span>Home</span>
         </NavItem>
       )}
-      <NavItem to="/explore">
-        <TagIcon />
-        <span>Explore</span>
-      </NavItem>
+      {!isLoggedIn && (
+        <NavItem to="/">
+          <TagIcon />
+          <span>Explore</span>
+        </NavItem>
+      )}
+      {isLoggedIn && (
+        <NavItem to="/explore">
+          <TagIcon />
+          <span>Explore</span>
+        </NavItem>
+      )}
       {isLoggedIn && (
         <NavItem to="/messages">
           <PersonIcon />
@@ -32,7 +40,7 @@ const Navbar = () => {
         </NavItem>
       )}
       {isLoggedIn && (
-        <NavItem to={`/preksha`}>
+        <NavItem to={`/user/preksha`}>
           <EmailIcon />
           <span>Profile</span>
         </NavItem>

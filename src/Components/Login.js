@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,11 +8,12 @@ import * as Yup from "yup";
 import Backdrop from "./UIElements/Backdrop";
 import Logo from "./Logo";
 import { loginUser } from "./Utils/Apicalls/userApi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((store) => store.Auth.isLoggedIn);
   const formik = useFormik({
     initialValues: {
       Email: "",
@@ -23,9 +24,16 @@ const Login = () => {
       Password: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      loginUser(values, dispatch);
+      loginUser(values, dispatch, navigate);
     },
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home");
+    }
+  }, [isLoggedIn]);
+
   const content = (
     <div className="fixed w-full max-w-[480px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-10 sm:p-16 rounded-3xl">
       <ClearOutlinedIcon

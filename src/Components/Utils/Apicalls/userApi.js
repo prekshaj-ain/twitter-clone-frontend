@@ -1,4 +1,5 @@
 import { FETCH_FAIL, FETCH_START, FETCH_SUCCESS } from "../authSlice";
+
 import api from "../instance";
 
 export const createUser = async (user, dispatch) => {
