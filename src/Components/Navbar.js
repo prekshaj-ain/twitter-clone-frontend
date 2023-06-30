@@ -5,11 +5,12 @@ import TagIcon from "@mui/icons-material/Tag";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 
-import Logo from "./Logo";
+import Logo from "./UIElements/Logo";
 import NavItem from "./NavItem";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((store) => store.Auth.isLoggedIn);
+  const username = useSelector((store) => store.UserInfo.userInfo.username);
   return (
     <div className="basis-1/5 border-r-gray-200 border-r-[1px] h-screen flex flex-col py-2 px-8">
       <NavItem to="/">
@@ -35,13 +36,13 @@ const Navbar = () => {
       )}
       {isLoggedIn && (
         <NavItem to="/messages">
-          <PersonIcon />
+          <EmailIcon />
           <span>Messages</span>
         </NavItem>
       )}
       {isLoggedIn && (
-        <NavItem to={`/user/preksha`}>
-          <EmailIcon />
+        <NavItem to={`/user/${username}`}>
+          <PersonIcon />
           <span>Profile</span>
         </NavItem>
       )}

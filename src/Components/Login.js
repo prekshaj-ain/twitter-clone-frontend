@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import Backdrop from "./UIElements/Backdrop";
-import Logo from "./Logo";
+import Logo from "./UIElements/Logo";
 import { loginUser } from "./Utils/Apicalls/userApi";
 import { useDispatch, useSelector } from "react-redux";
 
