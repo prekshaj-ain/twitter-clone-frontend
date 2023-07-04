@@ -3,6 +3,8 @@ import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 
 import useAutosizeTextArea from "./Utils/Hooks/useAutosizeTextarea";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import { useSelector } from "react-redux";
+import UserImageIcon from "./UIElements/UserImageIcon";
 
 const WriteSection = () => {
   const [value, setValue] = useState("");
@@ -10,6 +12,9 @@ const WriteSection = () => {
   const [file, setFile] = useState(null);
   let extraCharacter = useRef();
   const textareaRef = useRef(null);
+  const profilePicture = useSelector(
+    (store) => store.UserInfo.userInfo.profilePicture
+  );
 
   const fileHandler = (e) => {
     const val = e.target?.files[0];
@@ -51,13 +56,7 @@ const WriteSection = () => {
   return (
     <div className="px-4 py-1 flex gap-3 ">
       <div className="basis-1/12 pt-1">
-        <div className="w-12 h-12 object-contain">
-          <img
-            className="w-full h-full rounded-full"
-            src="https://cdn.pixabay.com/photo/2021/06/20/20/31/woman-6351965_1280.jpg"
-            alt="User Image"
-          />
-        </div>
+        <UserImageIcon ImageUrl={profilePicture} />
       </div>
       <div className="basis-11/12">
         <div className="w-full py-1 mt-2">

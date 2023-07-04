@@ -30,7 +30,6 @@ import NotFound from "./NotFound";
 const App = () => {
   const location = useLocation();
   const background = location.state?.background;
-  console.log(location, background);
   return (
     <>
       <Routes location={background || location}>
