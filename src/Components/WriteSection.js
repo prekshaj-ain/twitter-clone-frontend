@@ -44,14 +44,16 @@ const WriteSection = () => {
     if (val.length === 0) {
       setError(true);
       extraCharacter.current = "";
-    } else if (val.length > 10) {
+    } else if (val.length > 250) {
       setError(true);
-      extraCharacter.current = 10 - val.length;
+      extraCharacter.current = 250 - val.length;
     } else {
       setError(false);
       extraCharacter.current = "";
     }
   };
+
+  const tweetHandler = () => {};
   useAutosizeTextArea(textareaRef, value);
   return (
     <div className="px-4 py-1 flex gap-3 ">
@@ -59,16 +61,16 @@ const WriteSection = () => {
         <UserImageIcon ImageUrl={profilePicture} />
       </div>
       <div className="basis-11/12">
-        <div className="w-full py-1 mt-2">
+        <div className="w-full py-1 mt-2 max-h-full">
           <textarea
             ref={textareaRef}
             value={value}
             onChange={changeHandler}
             placeholder="Write something"
-            className="w-full h-6 text-lg border-none resize-none outline-none overflow-hidden tracking-tighter leading-tight"
+            className="w-full h-12 max-h-96 text-lg border-none resize-none outline-none overscroll-auto tracking-tighter leading-tight"
           ></textarea>
           {/* ImagePreview */}
-          <div className="mt-2 relative">
+          <div className="mt-2 relative z-0 ">
             {file && (
               <ClearOutlinedIcon
                 fontSize="small"
@@ -102,6 +104,7 @@ const WriteSection = () => {
               <button
                 className=" px-3 py-1 rounded-full bg-blue-500 text-white font-bold disabled:opacity-50"
                 disabled={error}
+                onClick={tweetHandler}
               >
                 Tweet
               </button>

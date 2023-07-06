@@ -6,7 +6,7 @@ const Header = (type) => {
     setFeedType(type);
   };
   return (
-    <div className="border-b-[1px]">
+    <div className="border-b-[1px] sticky top-0 backdrop-blur-xl z-10">
       <h4 className="p-2 font-bold">Home</h4>
       <div className="flex">
         <div
