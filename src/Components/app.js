@@ -12,6 +12,7 @@ import Login from "./Login";
 import Layout from "./Layout";
 import RequireAuth from "./RequireAuth";
 import NotFound from "./NotFound";
+import PersistLogin from "./Utils/PersistLogin";
 /* 
     - App Layout
     - Nav
@@ -33,30 +34,29 @@ const App = () => {
   return (
     <>
       <Routes location={background || location}>
+        {/* Public routes */}
         <Route path="/" element={<Layout />}>
-          {/* Public routes */}
           <Route path="/" element={<Body />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/" element={<Home />} />
+            <Route path="tweets" element={<Home />} />
             <Route path="user/:user" element={<Profile />} />
           </Route>
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+        </Route>
 
+        <Route element={<PersistLogin />}>
           {/* Protected routes */}
           <Route element={<RequireAuth />}>
             <Route path="/" element={<Body />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="home" element={<Home />} />
               <Route path="explore" element={<Explore />} />
               <Route path="messages" element={<Message />} />
-              <Route path="compose/tweet" element={<NewTweet />} />
             </Route>
           </Route>
-
-          {/* catch all */}
-          <Route path="*" element={<NotFound />} />
         </Route>
+
+        {/* catch all */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {background && (
         <Routes>

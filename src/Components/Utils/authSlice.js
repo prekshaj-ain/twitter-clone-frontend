@@ -6,9 +6,9 @@ const authSlice = createSlice({
     loading: false,
     userId: null,
     userToken: null,
+    isLoggedIn: false,
     error: null,
     success: false,
-    isLoggedIn: false,
   },
   reducers: {
     FETCH_START: (state) => {
@@ -28,8 +28,14 @@ const authSlice = createSlice({
       state.success = false;
       state.error = action.payload;
     },
+    LOGOUT: (state) => {
+      state.userId = null;
+      state.userToken = null;
+      state.isLoggedIn = false;
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } = authSlice.actions;
+export const { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, LOGOUT } =
+  authSlice.actions;
