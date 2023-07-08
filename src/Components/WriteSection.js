@@ -5,34 +5,30 @@ import useAutosizeTextArea from "./Utils/Hooks/useAutosizeTextarea";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import { useSelector } from "react-redux";
 import UserImageIcon from "./UIElements/UserImageIcon";
+import { api as axios } from "./Utils/instance";
 
 const WriteSection = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(true);
   const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState();
   let extraCharacter = useRef();
   const textareaRef = useRef(null);
   const profilePicture = useSelector(
     (store) => store.UserInfo.userInfo.profilePicture
   );
+  const userId = useSelector((store) => store.Auth.userId);
 
   const fileHandler = (e) => {
     const val = e.target?.files[0];
-    console.log(val);
-    const reader = new FileReader();
-    if (val) {
-      reader.readAsDataURL(val);
-    }
-
-    reader.onload = (readerEvent) => {
-      setFile(readerEvent.target.result);
-      setError(false);
-    };
+    setFile(val);
+    setPreview(URL.createObjectURL(val));
     e.target.value = null;
   };
 
   const clearFileHandler = () => {
     setFile(null);
+    setPreview(null);
     if (value.trim().length === 0) {
       setError(true);
     }
@@ -51,12 +47,41 @@ const WriteSection = () => {
       setError(false);
       extraCharacter.current = "";
     }
+    e.target.value = "";
   };
 
-  const tweetHandler = () => {};
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      const res = await axios.post("/upload", formData);
+      return res.data.data.url;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const tweetHandler = async () => {
+    let url = "";
+    if (!!file) {
+      url = await upload();
+    }
+    try {
+      await axios.post("/tweets", {
+        image: url,
+        content: value,
+        author: userId,
+      });
+      setValue("");
+      setFile(null);
+      setPreview(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useAutosizeTextArea(textareaRef, value);
   return (
-    <div className="px-4 py-1 flex gap-3 ">
+    <div className="px-4 py-1 flex gap-3 border-b-[.5px] ">
       <div className="basis-1/12 pt-1">
         <UserImageIcon ImageUrl={profilePicture} />
       </div>
@@ -79,7 +104,7 @@ const WriteSection = () => {
                 onClick={clearFileHandler}
               />
             )}
-            <img className="rounded-3xl" src={file} alt="" />
+            <img className="rounded-3xl" src={preview} alt="" />
           </div>
           {/* action buttons */}
           <div className="flex w-full justify-between p-2 sticky bottom-0 bg-white">
@@ -102,7 +127,7 @@ const WriteSection = () => {
                 </p>
               )}
               <button
-                className=" px-3 py-1 rounded-full bg-blue-500 text-white font-bold disabled:opacity-50"
+                className=" px-3 py-1 rounded-full bg-blue-500 text-white font-bold disabled:opacity-50 hover:bg-blue-600 hover:shadow-lg"
                 disabled={error}
                 onClick={tweetHandler}
               >
