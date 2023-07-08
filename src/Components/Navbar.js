@@ -24,6 +24,7 @@ const Navbar = () => {
       <div>
         <Logo />
       </div>
+
       {isLoggedIn && (
         <NavItem to="/home">
           <HomeIcon />

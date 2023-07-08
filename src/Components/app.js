@@ -43,11 +43,11 @@ const App = () => {
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
         </Route>
-
+        {/* Protected routes */}
         <Route element={<PersistLogin />}>
-          {/* Protected routes */}
           <Route element={<RequireAuth />}>
             <Route path="/" element={<Body />}>
+              <Route path="/" element={<Home />} />
               <Route path="home" element={<Home />} />
               <Route path="explore" element={<Explore />} />
               <Route path="messages" element={<Message />} />
