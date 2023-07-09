@@ -10,9 +10,7 @@ const useFetchPost = (apiEndPoint) => {
   const fetchPost = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `${apiEndPoint}?offset=${page}&limit=10`
-      );
+      const response = await axios.get(`${apiEndPoint}?page=${page}&limit=10`);
       setPosts((prevPosts) => [...prevPosts, ...response.data.data]);
     } catch (err) {
       if (err.response) {
@@ -33,6 +31,7 @@ const useFetchPost = (apiEndPoint) => {
   useEffect(() => {
     if (mountedRef.current) {
       fetchPost();
+      console.log(posts);
     }
   }, [page]);
 
