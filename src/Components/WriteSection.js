@@ -47,7 +47,6 @@ const WriteSection = () => {
       setError(false);
       extraCharacter.current = "";
     }
-    e.target.value = "";
   };
 
   const upload = async () => {
