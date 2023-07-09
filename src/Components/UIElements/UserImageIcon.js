@@ -5,7 +5,7 @@ const UserImageIcon = (props) => {
   if (props.ImageUrl === "") {
     return (
       <div
-        className={`w-10 h-10 object-contain ${
+        className={`w-9 h-9 object-contain ${
           props.size === "big" && "w-28 h-28"
         }`}
       >
@@ -19,7 +19,7 @@ const UserImageIcon = (props) => {
   } else {
     return (
       <div
-        className={`w-10 h-10 object-contain ${
+        className={`w-9 h-9 object-contain ${
           props.size === "big" && "w-28 h-28"
         }`}
       >
