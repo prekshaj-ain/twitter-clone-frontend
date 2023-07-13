@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import MainContainer from "./MainContainer";
@@ -10,18 +10,15 @@ import { getUserById } from "./Utils/Apicalls/userInfoApi";
 const Home = () => {
   const isLoggedIn = useSelector((store) => store.Auth.isLoggedIn);
   const userId = useSelector((store) => store.Auth.userId);
-  const success = useSelector((store) => store.UserInfo.success);
+  const prevUserIdRef = useRef(userId);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(userId);
-    let mounted = true;
-    if (isLoggedIn && mounted) {
-      !success && getUserById(dispatch, userId);
+    if (prevUserIdRef.current !== userId) {
+      console.log(userId);
+      getUserById(dispatch, userId);
+      prevUserIdRef.current = userId;
     }
-    return () => {
-      mounted = false;
-    };
-  }, [userId]);
+  }, [userId, dispatch]);
   return (
     <div className="flex basis-4/5">
       {isLoggedIn ? <MainContainer /> : <MainPublic />}
