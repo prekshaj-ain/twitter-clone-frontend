@@ -1,17 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { api as axios } from "../instance";
+import { useDispatch, useSelector } from "react-redux";
+import { addPosts, updatePage } from "../PostsSlice";
 
 const useFetchPost = (apiEndPoint) => {
-  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
-  const mountedRef = useRef(false);
+  const dispatch = useDispatch();
+  const success = useSelector((store) => store.Posts.success);
+  const page = useSelector((store) => store.Posts.page);
+  const isMounted = useRef(false);
   const fetchPost = async () => {
     try {
       setLoading(true);
       const response = await axios.get(`${apiEndPoint}?page=${page}&limit=10`);
-      setPosts((prevPosts) => [...prevPosts, ...response.data.data]);
+      console.log("new page");
+      dispatch(addPosts(response.data.data));
     } catch (err) {
       if (err.response) {
         setError(err.response.data.error);
@@ -22,19 +26,16 @@ const useFetchPost = (apiEndPoint) => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
-  useEffect(() => {
-    if (mountedRef.current) {
-      fetchPost();
-      console.log(posts);
-    }
-  }, [page]);
 
+  useEffect(() => {
+    isMounted.current = true;
+    if (isMounted.current && !success) {
+      fetchPost();
+    }
+    return () => {
+      isMounted.current = false;
+    };
+  }, [page]);
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -42,8 +43,8 @@ const useFetchPost = (apiEndPoint) => {
         document.documentElement.scrollHeight
       ) {
         // to avoid the redundant api calls
-        if (!loading) {
-          setPage((prevPage) => prevPage + 1);
+        if (!loading && isMounted.current) {
+          dispatch(updatePage());
         }
       }
     };
@@ -54,7 +55,7 @@ const useFetchPost = (apiEndPoint) => {
     };
   }, [loading]);
 
-  return { posts, loading, error };
+  return { loading, error };
 };
 
 export default useFetchPost;
