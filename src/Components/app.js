@@ -1,32 +1,17 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+
 import Body from "./Body";
 import Home from "./Home";
 import Explore from "./Explore";
-import NewTweet from "./NewTweet";
 import Message from "./Message";
 import Profile from "./Profile";
-import NewTweet from "./NewTweet";
 import Signup from "./Signup";
 import Login from "./Login";
 import Layout from "./Layout";
 import RequireAuth from "./RequireAuth";
 import NotFound from "./NotFound";
 import PersistLogin from "./Utils/PersistLogin";
-/* 
-    - App Layout
-    - Nav
-        - logo
-        - navlinks
-    - body
-        - posts
-            -post
-            -post
-            -post
-
-    - aside section
-        
-*/
 
 const App = () => {
   const location = useLocation();

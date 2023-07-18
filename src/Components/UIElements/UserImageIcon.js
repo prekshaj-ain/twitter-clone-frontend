@@ -6,7 +6,7 @@ const UserImageIcon = (props) => {
     return (
       <div
         className={`w-9 h-9 object-contain ${
-          props.size === "big" && "w-28 h-28"
+          props.size === "big" && "!w-28 !h-28"
         }`}
       >
         <img
@@ -20,7 +20,7 @@ const UserImageIcon = (props) => {
     return (
       <div
         className={`w-9 h-9 object-contain ${
-          props.size === "big" && "w-28 h-28"
+          props.size === "big" && "!w-28 !h-28"
         }`}
       >
         <img
