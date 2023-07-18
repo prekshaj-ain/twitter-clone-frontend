@@ -10,10 +10,11 @@ import { getUserById } from "./Utils/Apicalls/userInfoApi";
 const Home = () => {
   const isLoggedIn = useSelector((store) => store.Auth.isLoggedIn);
   const userId = useSelector((store) => store.Auth.userId);
+  const success = useSelector((store) => store.UserInfo.success);
   const prevUserIdRef = useRef(userId);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (prevUserIdRef.current !== userId) {
+    if (prevUserIdRef.current !== userId || !success) {
       console.log(userId);
       getUserById(dispatch, userId);
       prevUserIdRef.current = userId;
