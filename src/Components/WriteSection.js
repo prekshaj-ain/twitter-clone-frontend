@@ -80,7 +80,7 @@ const WriteSection = () => {
   };
   useAutosizeTextArea(textareaRef, value);
   return (
-    <div className="px-4 py-1 flex gap-3 border-b-[.5px] ">
+    <div className="px-4 py-1 flex gap-3">
       <div className="basis-1/12 pt-1">
         <UserImageIcon ImageUrl={profilePicture} />
       </div>

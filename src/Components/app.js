@@ -12,6 +12,8 @@ import Layout from "./Layout";
 import RequireAuth from "./RequireAuth";
 import NotFound from "./NotFound";
 import PersistLogin from "./Utils/PersistLogin";
+import Compose from "./Compose";
+import SingleTweet from "./SingleTweet";
 
 const App = () => {
   const location = useLocation();
@@ -24,6 +26,7 @@ const App = () => {
           <Route path="/" element={<Body />}>
             <Route path="tweets" element={<Home />} />
             <Route path="user/:user" element={<Profile />} />
+            <Route path="/:author/:tweetId" element={<SingleTweet />} />
           </Route>
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
@@ -36,6 +39,7 @@ const App = () => {
               <Route path="home" element={<Home />} />
               <Route path="explore" element={<Explore />} />
               <Route path="messages" element={<Message />} />
+              <Route path="Compose/tweet" element={<Compose />} />
             </Route>
           </Route>
         </Route>
@@ -47,6 +51,7 @@ const App = () => {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/Compose/tweet" element={<Compose />} />
         </Routes>
       )}
     </>
