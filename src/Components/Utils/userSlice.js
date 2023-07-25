@@ -8,8 +8,6 @@ const userSlice = createSlice({
       username: "",
       name: "",
       profilePicture: "",
-      banner: "",
-      bio: "",
     },
     loading: false,
     error: null,
