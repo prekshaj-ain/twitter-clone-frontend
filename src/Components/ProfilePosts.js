@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-
 import Header from "./UIElements/Header";
-import WriteSection from "./WriteSection";
-import Tweets from "./Tweets";
-import useFetchPost from "./Utils/Hooks/useFetchPost";
 
-function MainContainer() {
-  const { loading, error } = useFetchPost("/tweets");
-  const feedTypes = ["For you", "Following"];
+const ProfilePosts = () => {
+  const feedTypes = ["Tweets", "Replies", "likes"];
   const [selectedFeedType, setSelectedFeedType] = useState(feedTypes[0]);
 
   const handleFeedTypeChange = (type) => {
@@ -16,12 +11,10 @@ function MainContainer() {
     // For example, you can trigger a new API call with the selected feed type
   };
   return (
-    <div className="max-w-xl w-full lg:basis-3/5">
+    <div>
       <Header feedTypes={feedTypes} onFeedTypeChange={handleFeedTypeChange} />
-      <WriteSection />
-      <Tweets />
     </div>
   );
-}
+};
 
-export default MainContainer;
+export default ProfilePosts;

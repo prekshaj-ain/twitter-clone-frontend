@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import UserImageIcon from "./UIElements/UserImageIcon";
 import Cover from "./UIElements/Cover";
 import useFetchProfile from "./Utils/Hooks/useFetchProfile";
+import ProfilePosts from "./ProfilePosts";
 
 const UserProfile = () => {
   const { user } = useParams();
@@ -35,6 +36,7 @@ const UserProfile = () => {
           </section>
         </div>
       </div>
+      <ProfilePosts />
     </div>
   );
 };
