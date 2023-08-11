@@ -4,9 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 const SidebarPublic = () => {
   const location = useLocation();
   return (
-    <div className="hidden lg:block border-l-gray-200 border-l-[1px] basis-2/5">
-      <div className="border-gray-200 border-[1px] m-5 p-5 rounded-xl flex flex-col">
-        <h3 className="font-bold text-lg pb-4">New to Twitter?</h3>
+    <div className="hidden lg:block lg:basis-2/5">
+      <div className="sticky top-3 border-gray-200 border-[1px] m-5 p-5 rounded-xl flex flex-col">
+        <h3 className="font-bold text-lg pb-4">New to Bluebird?</h3>
         <p className="text-lg text-gray-500">Don't miss what's happening</p>
         <p className="text-[.8rem] text-gray-500">
           People on BlueBird are first to know.

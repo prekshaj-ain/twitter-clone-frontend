@@ -9,8 +9,7 @@ const Header = ({ feedTypes, onFeedTypeChange }) => {
   };
 
   return (
-    <div className="border-b-[1px] sticky top-0 backdrop-blur-xl z-10">
-      <h4 className="p-2 font-bold">Home</h4>
+    <div className="border-b-[1px] sticky top-0 backdrop-blur-2xl z-10">
       <div className="flex">
         {feedTypes.map((type) => (
           <div
