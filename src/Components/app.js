@@ -24,6 +24,7 @@ const App = () => {
         {/* Public routes */}
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Body />}>
+            <Route path="/" element={<Home />} />
             <Route path="tweets" element={<Home />} />
             <Route path="user/:user" element={<Profile />} />
             <Route path="/:author/:tweetId" element={<SingleTweet />} />

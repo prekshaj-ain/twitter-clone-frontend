@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import MainContainer from "./MainContainer";
 import Sidebar from "./Sidebar";
 import SidebarPublic from "./SidebarPublic";
-import MainPublic from "./MainPublic";
 import { getUserById } from "./Utils/Apicalls/userInfoApi";
 
 const Home = () => {
@@ -22,7 +21,7 @@ const Home = () => {
   }, [userId, dispatch]);
   return (
     <div className="flex basis-4/5">
-      {isLoggedIn ? <MainContainer /> : <MainPublic />}
+      <MainContainer />
       {isLoggedIn ? <Sidebar /> : <SidebarPublic />}
     </div>
   );
